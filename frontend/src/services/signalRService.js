@@ -1,4 +1,5 @@
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import { SIGNALR_HUB_URL } from '../api/apiConfig';
 
 class SignalRService {
   constructor() {
@@ -29,7 +30,7 @@ class SignalRService {
     try {
       // ENHANCED CONNECTION: Try primary method first
       this.connection = new HubConnectionBuilder()
-        .withUrl(`${import.meta.env.VITE_API_BASE_URL}/chatHub`, {
+        .withUrl(SIGNALR_HUB_URL, {
           accessTokenFactory: () => token,
           skipNegotiation: false,
           transport: 1 // WebSockets only
@@ -38,7 +39,7 @@ class SignalRService {
         .configureLogging(LogLevel.Information)
         .build();
 
-      console.log('SignalR - Hub URL:', `${import.meta.env.VITE_API_BASE_URL}/chatHub`);
+      console.log('SignalR - Hub URL:', SIGNALR_HUB_URL);
 
       // STABILITY FIX: Enhanced connection event handling
       this.connection.onreconnecting(() => {
@@ -106,7 +107,7 @@ class SignalRService {
 
           // Try with query string token
           this.connection = new HubConnectionBuilder()
-            .withUrl(`${import.meta.env.VITE_API_BASE_URL}/chatHub?access_token=${encodeURIComponent(token)}`)
+            .withUrl(`${SIGNALR_HUB_URL}?access_token=${encodeURIComponent(token)}`)
             .withAutomaticReconnect([0, 2000, 10000, 30000])
             .configureLogging(LogLevel.Information)
             .build();

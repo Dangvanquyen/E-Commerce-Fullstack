@@ -26,7 +26,8 @@ namespace Infrastructure.Services
         {
             try
             {
-                // 1. Lấy lịch sử tất cả các mặt hàng đã thanh toán thành công (giao dịch)
+               
+                //chuẩn bi dữ liệu từ database
                 var orderItemsRaw = await _context.DonHangChiTiet
                     .Where(d => d.DonHang.TrangThai == "HoanThanh")
                     .Select(d => new
@@ -37,8 +38,9 @@ namespace Infrastructure.Services
                         d.DonGia
                     })
                     .ToListAsync();
+                    //Lấy dữ liệu
 
-                // Group theo đơn hàng và sản phẩm để tính tổng số lượng & doanh thu của sản phẩm trong đơn đó
+              
                 var itemsInOrders = orderItemsRaw
                     .GroupBy(x => new { x.DonHangId, x.SanPhamId })
                     .Select(g => new
@@ -49,6 +51,7 @@ namespace Infrastructure.Services
                         Utility = (double)g.Sum(x => x.SoLuong * x.DonGia)
                     })
                     .ToList();
+                    // tính số lượng đơn giá
 
                 var transactions = itemsInOrders
                     .GroupBy(x => x.DonHangId)
@@ -64,16 +67,17 @@ namespace Infrastructure.Services
                 {
                     return;
                 }
+                //cộng lại số lượng đơm giá 
 
+                //Mỗi đơn hàng trở thành một transaction.
                 int totalTransactions = transactions.Count;
                 double totalRevenue = transactions.Sum(t => t.TU);
 
-                // Ngưỡng hữu dụng tối thiểu: 1.5% tổng doanh thu, tối thiểu là 100,000đ để xử lý tập dữ liệu nhỏ
+                
                 double minUtilityThreshold = Math.Max(100000, totalRevenue * 0.015);
 
-                // GIAI ĐOẠN I: Tìm các tập ứng viên có Hữu dụng trọng số giao dịch cao (HTUIs)
-                
-                // Bước 1: Tính toán TWU cho từng sản phẩm đơn lẻ (1-itemsets)
+               
+            
                 var itemTwu = new Dictionary<int, double>();
                 foreach (var transaction in transactions)
                 {
@@ -86,13 +90,13 @@ namespace Infrastructure.Services
                     }
                 }
 
-                // Lọc tập ứng viên 1-HTUIs
+              
                 var frequent1Itemsets = itemTwu
                     .Where(kvp => kvp.Value >= minUtilityThreshold)
                     .Select(kvp => kvp.Key)
                     .ToHashSet();
 
-                // Bước 2: Tạo tập ứng viên 2-HTUIs (Cặp sản phẩm ứng viên có TWU vượt ngưỡng)
+                
                 var pairTwu = new Dictionary<(int, int), double>();
                 foreach (var transaction in transactions)
                 {

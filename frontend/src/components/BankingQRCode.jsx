@@ -9,8 +9,8 @@ const BankingQRCode = ({ amount, orderInfo, onClose }) => {
     const bankInfo = {
         bankName: 'Ngan hang quan doi',
         bankCode: 'MB Bank',
-        accountNumber: '0862118502',
-        accountName: 'TRAN CONG DANH'
+        accountNumber: '3418122005',
+        accountName: 'DANG VAN QUYEN'
     };
 
     // Tạo nội dung chuyển khoản
@@ -22,7 +22,7 @@ const BankingQRCode = ({ amount, orderInfo, onClose }) => {
     };
 
     // Tạo URL QR Code sử dụng API VietQR
-    const qrCodeUrl = `https://img.vietqr.io/image/MB-0862118502-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(transferContent)}&accountName=TRAN%20CONG%20DANH`;
+    const qrCodeUrl = `https://img.vietqr.io/image/MB-${bankInfo.accountNumber}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(bankInfo.accountName)}`;
     // Copy số tài khoản
     const copyToClipboard = (text, label) => {
         navigator.clipboard.writeText(text);

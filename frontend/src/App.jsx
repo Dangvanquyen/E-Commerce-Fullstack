@@ -32,7 +32,6 @@ import AccountSettingsPage from './pages/shop/AccountSettingsPage';
 import ChangePasswordPage from './pages/profile/ChangePasswordPage';
 import WishlistPage from './pages/shop/WishlistPage';
 import PaymentCallbackPage from './pages/shop/PaymentCallbackPage';
-import TestVNPayPage from './pages/TestVNPayPage';
 import CustomerSupportPage from './pages/shop/CustomerSupportPage';
 
 // Admin Pages
@@ -52,10 +51,6 @@ import ProductBehaviorPage from './pages/admin/ProductBehaviorPage';
 import VouchersPage from './pages/admin/VouchersPage';
 
 // Test Pages
-import TestChatPage from './pages/TestChatPage';
-import DebugPage from './pages/DebugPage';
-import DebugAuthPage from './pages/DebugAuthPage';
-import ApiTestPage from './pages/ApiTestPage';
 
 function App() {
   return (
@@ -78,11 +73,6 @@ function App() {
               <Route path="profile/change-password" element={<ChangePasswordPage />} />
               <Route path="wishlist" element={<WishlistPage />} />
               <Route path="payment-callback" element={<PaymentCallbackPage />} />
-              <Route path="test-vnpay" element={<TestVNPayPage />} />
-              <Route path="test-chat" element={<TestChatPage />} />
-              <Route path="debug" element={<DebugPage />} />
-              <Route path="debug-auth" element={<DebugAuthPage />} />
-              <Route path="api-test" element={<ApiTestPage />} />
               <Route path="cham-soc-khach-hang" element={<CustomerSupportPage />} />
             </Route>
 

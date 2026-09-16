@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import chatApi from '../api/chatApi';
+import { API_BASE_URL } from '../api/apiConfig';
 
 const ApiTestPage = () => {
   const { user, token } = useAuth();
@@ -26,7 +27,7 @@ const ApiTestPage = () => {
     setLoading(true);
     try {
       console.log('Testing direct fetch...');
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/chat/room`, {
+      const response = await fetch(`${API_BASE_URL}/chat/room`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -50,7 +51,7 @@ const ApiTestPage = () => {
     setLoading(true);
     try {
       console.log('Testing debug users API...');
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/chat/debug/users`, {
+      const response = await fetch(`${API_BASE_URL}/chat/debug/users`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

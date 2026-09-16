@@ -52,14 +52,14 @@ export const AuthProvider = ({ children }) => {
                 
                 // Lấy ID vai trò (Ưu tiên lấy ở root response vì Backend mình vừa gán cứng ở đó)
                 // Hoặc lấy trong rawUser
-                const roleId = response.vaiTroId || rawUser.vaiTroId;
+                const roleId = Number(response.vaiTroId || rawUser.vaiTroId || 0);
 
                 // --- LOGIC XÁC ĐỊNH QUYỀN (QUAN TRỌNG) ---
                 // 1. Ưu tiên lấy tên trực tiếp (nếu Backend trả về "Admin")
                 // 2. Nếu không có tên, check ID (1 là Admin)
-                let finalRole = "User";
+                let finalRole = "Customer";
 
-                if (rawUser.vaiTroTen === 'Admin' || roleId === 1) {
+                if (rawUser.vaiTroTen === 'Admin' || rawUser.vaiTroTen === 'Administrator' || roleId === 1) {
                     finalRole = 'Admin';
                 }
 

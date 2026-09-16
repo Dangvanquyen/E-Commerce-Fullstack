@@ -35,7 +35,7 @@ namespace Application.Services
         public async Task<AuthResponse> LoginAsync(LoginRequest request)
         {
             // 1. Lấy thông tin User từ Database
-            var nguoiDung = await _unitOfWork.NguoiDung.GetByTenDangNhapAsync(request.TenDangNhap);
+            var nguoiDung = await _unitOfWork.NguoiDung.GetByTenDangNhapAsync(request.TenDangNhap.Trim());
 
             // 2. Kiểm tra User có tồn tại không
             if (nguoiDung == null)
@@ -74,7 +74,7 @@ namespace Application.Services
 
             // --- XỬ LÝ GÁN TÊN VAI TRÒ THỦ CÔNG ---
             // Vì repository chưa include bảng VaiTro, nên ta tự check ID để lấy tên
-            string tenVaiTro = "User"; // Mặc định là User/Customer
+            string tenVaiTro = "Customer"; // Mặc định là User/Customer
             if (nguoiDung.VaiTroId == 1)
             {
                 tenVaiTro = "Admin";
@@ -108,7 +108,7 @@ namespace Application.Services
         public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
         {
             // Check username trùng
-            var existingUser = await _unitOfWork.NguoiDung.GetByTenDangNhapAsync(request.TenDangNhap);
+            var existingUser = await _unitOfWork.NguoiDung.GetByTenDangNhapAsync(request.TenDangNhap.Trim());
             if (existingUser != null)
             {
                 return new AuthResponse
@@ -160,7 +160,7 @@ namespace Application.Services
             // Gán tên thủ công (Mới đăng ký thì chắc chắn là User rồi)
             if (response.NguoiDung != null)
             {
-                response.NguoiDung.VaiTroTen = "User";
+                response.NguoiDung.VaiTroTen = "Customer";
             }
 
             return response;

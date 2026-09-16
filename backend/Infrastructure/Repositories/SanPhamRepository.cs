@@ -16,10 +16,10 @@ namespace Infrastructure.Repositories
         {
         }
 
-        // OVERRIDE: Include DanhMuc navigation property in paged results
+        
         public override async Task<(IEnumerable<SanPham> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize)
         {
-            var totalCount = await _dbSet.CountAsync();
+            var totalCount = await _dbSet.CountAsync(); 
             var items = await _dbSet
                 .Include(s => s.DanhMuc)
                 .Include(s => s.SanPhamChiTiets)

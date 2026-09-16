@@ -14,9 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
+    var configuredOrigins = builder.Configuration
+        .GetSection("Cors:AllowedOrigins")
+        .Get<string[]>() ?? Array.Empty<string>();
+
+    var allowedOrigins = configuredOrigins.Length > 0
+        ? configuredOrigins
+        : new[] { "http://localhost:5173", "http://localhost:5174" };
+
     options.AddPolicy("AllowAll",
-        builder => builder
-            .WithOrigins("http://localhost:5173", "http://localhost:5174") // Frontend ports
+        policy => policy
+            .WithOrigins(allowedOrigins)
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());

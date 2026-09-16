@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/apiConfig';
 
 const DebugPage = () => {
   const { user, token, isAuthenticated, isAdmin } = useAuth();
@@ -36,7 +37,7 @@ const DebugPage = () => {
         
         <div className="p-4 bg-gray-100 rounded">
           <h2 className="font-bold">Environment:</h2>
-          <p>API Base URL: {import.meta.env.VITE_API_BASE_URL}</p>
+          <p>API Base URL: {API_BASE_URL}</p>
         </div>
       </div>
     </div>

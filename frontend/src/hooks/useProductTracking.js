@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import axiosClient from '../api/axiosClient';
+import { API_BASE_URL } from '../api/apiConfig';
 
 /**
  * Lấy hoặc tạo sessionId duy nhất cho phiên duyệt
@@ -59,8 +60,7 @@ export function useProductTracking(sanPhamId, nguoiDungId = null) {
 
       // Dùng sendBeacon để đảm bảo request được gửi khi đóng tab
       const payload = JSON.stringify({ lichSuId, giay });
-      const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
-      const url = `${baseUrl}/ThongKe/thoi-gian-xem`;
+      const url = `${API_BASE_URL}/ThongKe/thoi-gian-xem`;
 
       if (navigator.sendBeacon) {
         const blob = new Blob([payload], { type: 'application/json' });

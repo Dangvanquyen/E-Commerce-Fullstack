@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Star, ShoppingCart, Heart, Minus, Plus, Truck, RefreshCw, ShieldCheck, Loader2, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from '../../api/apiConfig';
 import productApi from '../../api/productApi';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
@@ -147,7 +148,7 @@ const ProductDetailPage = () => {
     if (!variantToAdd && variants.length === 0) {
       // Product has no variants, need to create a default variant first
       try {
-        const createVariantResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/SanPhamChiTiet`, {
+        const createVariantResponse = await fetch(`${API_BASE_URL}/SanPhamChiTiet`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -212,7 +213,7 @@ const ProductDetailPage = () => {
     if (!variantToBuy && variants.length === 0) {
       // Product has no variants, need to create a default variant first
       try {
-        const createVariantResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/SanPhamChiTiet`, {
+        const createVariantResponse = await fetch(`${API_BASE_URL}/SanPhamChiTiet`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

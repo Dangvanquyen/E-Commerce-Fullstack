@@ -70,7 +70,7 @@ const ProductFormPage = () => {
                         moTa: product.moTa || '',
                         gia: product.gia || '',
                         giaGoc: product.giaGoc || '',
-                        danhMucId: product.danhMucId || '',
+                        danhMucId: product.danhMucId?.toString() || '',
                         hinhAnh: product.hinhAnh || '',
                         trangThai: product.trangThai ?? true
                     });

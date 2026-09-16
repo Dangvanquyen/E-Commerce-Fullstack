@@ -37,33 +37,6 @@ namespace WebAPIs.Controllers.v1
         }
 
         /// <summary>
-        /// Test endpoint - Tạo URL thanh toán không cần auth (CHỈ DÙNG ĐỂ DEBUG)
-        /// </summary>
-        [HttpPost("test-payment-url")]
-        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-        public IActionResult TestPaymentUrl([FromBody] PaymentInformationModel model)
-        {
-            try
-            {
-                var url = _vnPayService.CreatePaymentUrl(model, HttpContext);
-                
-                // Trả về cả URL và thông tin debug
-                var debugInfo = new
-                {
-                    paymentUrl = url,
-                    model = model,
-                    timestamp = DateTime.Now
-                };
-                
-                return Ok(ApiResponse<object>.SuccessResponse(debugInfo, "Test URL thành công"));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ApiResponse<string>.ErrorResponse($"Lỗi: {ex.Message}"));
-            }
-        }
-
-        /// <summary>
         /// Callback từ VNPay sau khi thanh toán
         /// </summary>
         [HttpGet("payment-callback")]

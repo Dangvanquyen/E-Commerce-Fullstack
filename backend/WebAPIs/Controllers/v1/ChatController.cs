@@ -181,17 +181,5 @@ namespace WebAPIs.Controllers.v1
             return Ok(ChatHub.GetOnlineUserIds());
         }
 
-        [HttpGet("debug/users")]
-        public async Task<ActionResult> GetUsersDebug()
-        {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-            
-            return Ok(new {
-                UserId = userIdClaim,
-                Role = userRole,
-                Claims = User.Claims.Select(c => new { c.Type, c.Value }).ToList()
-            });
-        }
     }
 }
