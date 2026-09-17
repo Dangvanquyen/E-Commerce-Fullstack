@@ -69,36 +69,40 @@ The system is built with a **React/Vite frontend** and a layered **ASP.NET Core 
 
 ### Home
 
-![FashionStore Home](./<img width="1899" height="939" alt="image" src="https://github.com/user-attachments/assets/9263a486-d4b6-4e01-967c-447771426b03" />
-/home.png)
+(./<img width="1899" height="939" alt="image" src="https://github.com/user-attachments/assets/9263a486-d4b6-4e01-967c-447771426b03" />/home.png)
 
 ### Shop
 
-![FashionStore Shop](./screenshots/shop.png)
+<img width="1906" height="941" alt="image" src="https://github.com/user-attachments/assets/0c629fa0-971f-4ddc-b886-9ddf47535439" />
 
 ### Product Detail
 
-![Product Detail](./screenshots/product-detail.png)
+<img width="1900" height="941" alt="image" src="https://github.com/user-attachments/assets/72aa5a1d-adbb-4813-a1f1-bf389280fdc1" />
+
 
 ### Shopping Cart
 
-![Shopping Cart](./screenshots/cart.png)
+<img width="1906" height="942" alt="image" src="https://github.com/user-attachments/assets/6b272754-8008-4104-ad9d-08fb34e65dae" />
+
 
 ### Checkout & Payment
 
-![Checkout](./screenshots/checkout.png)
+<img width="1902" height="939" alt="image" src="https://github.com/user-attachments/assets/398eef56-646b-437e-9e07-302560a862d6" />
+
 
 ### Customer Chat
 
-![Customer Chat](./screenshots/chat.png)
+<img width="1897" height="943" alt="image" src="https://github.com/user-attachments/assets/0eb8defa-99da-4b80-b07a-de6e9409ad68" />
+
 
 ### Admin Dashboard
 
-![Admin Dashboard](./screenshots/admin-dashboard.png)
+<img width="1894" height="947" alt="image" src="https://github.com/user-attachments/assets/8cf5e61d-b2a3-4165-94cc-cfdb8c06186b" />
+
 
 ### Product Management
+<img width="1913" height="944" alt="image" src="https://github.com/user-attachments/assets/d1f696c7-f82e-42a5-bde9-dee3b15f2e13" />
 
-![Admin Products](./screenshots/admin-products.png)
 
 > Replace the screenshot filenames above with your actual images.
 > Recommended: use 5–8 screenshots showing the main customer and admin workflows.
