@@ -14,17 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    var configuredOrigins = builder.Configuration
-        .GetSection("Cors:AllowedOrigins")
-        .Get<string[]>() ?? Array.Empty<string>();
-
-    var allowedOrigins = configuredOrigins.Length > 0
-        ? configuredOrigins
-        : new[] { "http://localhost:5173", "http://localhost:5174" };
-
     options.AddPolicy("AllowAll",
         policy => policy
-            .WithOrigins(allowedOrigins)
+            .SetIsOriginAllowed(_ => true)
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());
@@ -140,16 +132,18 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Enable Swagger UI in both Development and Production
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Clothing Store API v1");
-        options.RoutePrefix = string.Empty;
-    });
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Clothing Store API v1");
+    options.RoutePrefix = "swagger";
+});
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Clothing Store API v1");
+    options.RoutePrefix = string.Empty;
+});
 
 app.UseCors("AllowAll");
 

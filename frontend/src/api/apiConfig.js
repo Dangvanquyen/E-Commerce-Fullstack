@@ -1,4 +1,8 @@
-const configuredApiUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5281')
+const fallbackApiUrl = typeof window !== 'undefined'
+  ? (import.meta.env.DEV ? 'http://localhost:5281' : window.location.origin)
+  : 'http://localhost:5281';
+
+const configuredApiUrl = (import.meta.env.VITE_API_BASE_URL || fallbackApiUrl)
   .replace(/\/+$/, '');
 
 export const API_ROOT_URL = configuredApiUrl.endsWith('/api/v1')

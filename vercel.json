@@ -4,6 +4,14 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
+      "source": "/api/v1/:path*",
+      "destination": "http://fashion-api.runasp.net/api/v1/:path*"
+    },
+    {
+      "source": "/chatHub/:path*",
+      "destination": "http://fashion-api.runasp.net/chatHub/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
