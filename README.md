@@ -69,7 +69,8 @@ The system is built with a **React/Vite frontend** and a layered **ASP.NET Core 
 
 ### Home
 
-![FashionStore Home](./screenshots/home.png)
+![FashionStore Home](./<img width="1899" height="939" alt="image" src="https://github.com/user-attachments/assets/9263a486-d4b6-4e01-967c-447771426b03" />
+/home.png)
 
 ### Shop
 
